@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fifaapp-backend
+  namespace: fifaapp
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: fifaapp-backend
+  template:
+    metadata:
+      labels:
+        app: fifaapp-backend
+    spec:
+      containers:
+        - name: backend
+          image: 048319616750.dkr.ecr.us-east-1.amazonaws.com/fifaapp-backend:e01f1af
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: fifaapp-secret
+          ports:
+            - name: backend-port
+              containerPort: 8000
+              protocol: TCP

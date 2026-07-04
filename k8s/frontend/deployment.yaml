@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fifaapp-frontend
+  namespace: fifaapp
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: fifaapp-frontend
+  template:
+    metadata:
+      labels:
+        app: fifaapp-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: 048319616750.dkr.ecr.us-east-1.amazonaws.com/fifaapp-frontend:d82d461
+          imagePullPolicy: Always
+          ports:
+            - name: frontend-port
+              containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/conf.d/default.conf
+              subPath: default.conf
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: nginx-config
