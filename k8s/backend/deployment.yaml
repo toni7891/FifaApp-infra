@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: 048319616750.dkr.ecr.us-east-1.amazonaws.com/fifaapp-backend:e01f1af
+          image: 048319616750.dkr.ecr.us-east-1.amazonaws.com/fifaapp-backend:3cc5ea7
           imagePullPolicy: Always
           envFrom:
             - secretRef:
