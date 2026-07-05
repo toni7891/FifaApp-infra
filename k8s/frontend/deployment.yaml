@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: 048319616750.dkr.ecr.us-east-1.amazonaws.com/fifaapp-frontend:d82d461
+          image: 048319616750.dkr.ecr.us-east-1.amazonaws.com/fifaapp-frontend:22c36de
           imagePullPolicy: Always
           ports:
             - name: frontend-port
