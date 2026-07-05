@@ -15,3 +15,8 @@ import {
   to = aws_iam_role_policy_attachment.tfc_admin
   id = "tfc-FifaApp-infra-role/arn:aws:iam::aws:policy/AdministratorAccess"
 }
+
+import {
+  to = aws_iam_openid_connect_provider.github
+  id = "arn:aws:iam::048319616750:oidc-provider/token.actions.githubusercontent.com"
+}
